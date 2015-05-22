@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+<welcome-file-list>
+	<welcome-file>/WEB-INF/pages/ProductsPage.jsp</welcome-file>
+</welcome-file-list>
+	
+ <servlet>
+  <servlet-name>ProductPageServlet</servlet-name>
+  <servlet-class>servlets.ProductPageServlet</servlet-class>
+  <init-param>
+	<param-name>startInset</param-name>
+	<param-value>view</param-value>
+  </init-param>
+  <init-param>
+	<param-name>startLanguage</param-name>
+	<param-value>russian</param-value>
+  </init-param>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>ShoppingServlet</servlet-name>
+  <servlet-class>servlets.ShoppingServlet</servlet-class>
+ </servlet>
+ 
+ <servlet>
+    <servlet-name>ProductsPage</servlet-name>
+	<jsp-file>/WEB-INF/pages/ProductsPage.jsp</jsp-file>
+	<init-param>
+		<param-name>startLanguage</param-name>
+		<param-value>russian</param-value>
+	</init-param>
+	<init-param>
+		<param-name>numberOfProductsOnPage</param-name>
+		<param-value>2</param-value>
+	</init-param>
+ </servlet>
+ 
+ <servlet>
+    <servlet-name>ShoppingCart</servlet-name>
+	<jsp-file>/WEB-INF/pages/ShoppingCart.jsp</jsp-file>
+ </servlet>
+ 
+ <servlet>
+    <servlet-name>Booking</servlet-name>
+	<jsp-file>/WEB-INF/pages/Booking.jsp</jsp-file>
+ </servlet>
+ 
+  <servlet>
+  <servlet-name>BookingServlet</servlet-name>
+  <servlet-class>servlets.BookingServlet</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>CommentServlet</servlet-name>
+  <servlet-class>servlets.CommentServlet</servlet-class>
+ </servlet>
+
+ <servlet>
+    <servlet-name>LogIn</servlet-name>
+	<jsp-file>/WEB-INF/pages/LogIn.jsp</jsp-file>
+ </servlet> 
+ 
+ <servlet>
+    <servlet-name>LogOut</servlet-name>
+	<jsp-file>/WEB-INF/pages/LogOut.jsp</jsp-file>
+ </servlet>
+ 
+  <servlet>
+    <servlet-name>Cabinet</servlet-name>
+	<jsp-file>/WEB-INF/pages/Cabinet.jsp</jsp-file>
+ </servlet>
+ 
+ <servlet>
+    <servlet-name>LoadPhoto</servlet-name>
+	<jsp-file>/WEB-INF/pages/LoadPhoto.jsp</jsp-file>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>LoadPhotoServlet</servlet-name>
+  <servlet-class>servlets.LoadPhotoServlet</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>ProductPageServlet</servlet-name>
+  <url-pattern>/product</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>ShoppingServlet</servlet-name>
+  <url-pattern>/ShoppingServlet</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+	<servlet-name>ProductsPage</servlet-name>
+	<url-pattern>/products</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+	<servlet-name>LogIn</servlet-name>
+	<url-pattern>/login</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+	<servlet-name>LogOut</servlet-name>
+	<url-pattern>/logout</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+	<servlet-name>Cabinet</servlet-name>
+	<url-pattern>/cabinet</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet-mapping>
+  <servlet-name>ShoppingCart</servlet-name>
+  <url-pattern>/cart</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet-mapping>
+  <servlet-name>Booking</servlet-name>
+  <url-pattern>/booking</url-pattern>
+ </servlet-mapping>
+ 
+<servlet-mapping>
+  <servlet-name>BookingServlet</servlet-name>
+  <url-pattern>/bookingServlet</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet-mapping>
+  <servlet-name>LoadPhotoServlet</servlet-name>
+  <url-pattern>/LoadPhotoServlet</url-pattern>
+ </servlet-mapping> 
+ <servlet-mapping>
+  <servlet-name>CommentServlet</servlet-name>
+  <url-pattern>/CommentServlet</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>LoadPhoto</servlet-name>
+  <url-pattern>/load</url-pattern>
+ </servlet-mapping> 
+ 
+ <security-constraint>
+	<web-resource-collection>
+		<url-pattern>/cart</url-pattern>
+		<url-pattern>/cabinet</url-pattern>
+		<url-pattern>/booking</url-pattern>
+		<url-pattern>/login</url-pattern>
+		<url-pattern>/load</url-pattern>
+	</web-resource-collection>
+	<auth-constraint>
+		<role-name>user</role-name>
+	</auth-constraint>
+ </security-constraint>
+ 
+ <security-role>
+	<role-name>user</role-name>
+ </security-role>
+ 
+ <login-config>
+	<auth-method>FORM</auth-method>
+	<form-login-config>
+		<form-login-page>/WEB-INF/pages/LogInForm.jsp</form-login-page>
+		<form-error-page>/WEB-INF/pages/AuthError.jsp</form-error-page>
+	</form-login-config>
+ </login-config>
+ 
+ <filter>
+<display-name>LogFilter</display-name>
+	<filter-name>LogFilter</filter-name>
+	<filter-class>LogFilter</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>LogFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+</web-app>
